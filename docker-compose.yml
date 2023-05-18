@@ -1,0 +1,32 @@
+version: '3'
+services:
+  nodejs:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: express_container
+    image: express_image
+    volumes:
+      - ./:/usr/src/app
+      # - type: bind
+        # source: ./
+        # target: /usr/src/app/
+    ports:
+      - "3100:3100"
+    env_file:
+      - /.env/dev.env 
+      # environment:
+          # NODE_ENV: 
+      # volumes:
+          # - ${PWD}:/home/node/project
+      # working_dir: /home/node/project
+      # networks:
+          # app_net:
+              # ipv4_address: ${IP_NODE_SERVER}
+# networks:
+  # app_net:
+      # driver: bridge
+      # ipam:
+         # driver: default
+          # config:
+              # -   subnet: ${IP_SUBNET}
